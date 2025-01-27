@@ -1,0 +1,857 @@
+@charset "UTF-8";
+
+html {
+  font-size: 100%;
+}
+body {
+  font-family: "Poppins", "Noto Sans JP", serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  background-color: #ffffff;
+  color: #333;
+}
+a {
+  text-decoration: none;
+  color: #111;
+}
+img {
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+
+/* h1タグ用 */
+.site-title {
+  padding: 0;
+  width: 100px;
+  height: 50px;
+  transition: transform 600ms; 
+}
+
+.site-title:hover {
+  transform: translate(4px, 4px);
+}
+
+/* h2タグ用 */
+.sec-title {
+  font-size: 4.5rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* h3タグ用　区分け */
+.sort-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* h3タグ用　name */
+.profile-name-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* h3タグ用　about */
+.about-title {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* 
+HeaderとMainとFooter全体を囲むdivクラス
+*/
+.container {
+  width: 100%;
+  margin: 0px auto;
+}
+
+/* 
+【スクロールイベント】PROFILEセクションとCONTACTセクション
+フェード表示させる要素に使用するためのクラス
+ */
+.fadeIn-f1 {
+  opacity: 0;
+  transition-delay: 100ms;
+  transition-duration: 800ms;
+}
+
+.fadeIn-f2 {
+  transition-delay: 200ms;
+  transition-duration: 800ms;
+  opacity: 0;
+}
+
+.fadeIn-f3 {
+  transition-delay: 300ms;
+  transition-duration: 800ms;
+  opacity: 0;
+}
+
+/* ヘッダーのフェードイン（初期値） */
+.js-fadeIn {
+  opacity: 0; /* 非表示 */
+  transform: translateY(-48px); /* 上方向から */
+  transition: opacity 0.8s 0.3s, transform 0.8s 0.3s; /* フェードインと上から下へ移動 */
+}
+
+.js-fadeIn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* works（h2）（初期値） */
+.fadeIn-fd3 {
+  transition-delay: 300ms;
+  transition-duration: 800ms;
+  opacity: 0;
+}
+
+.fadeIn-fd3.show {
+  opacity: 1;
+}
+
+/* works (li)のフェードイン */
+.js-fadeUp {
+  opacity: 0;
+  transform: translateY(48px); /* 下方向から */
+  transition: opacity 0.8s 0.1s, transform 0.8s 0.1s; 
+}
+
+.js-fadeUp.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+#header {
+  display: flex;
+  align-items: flex-start;
+  height: auto;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 43%, rgba(255, 255, 255, 0));
+  z-index: 2;
+}
+
+#header .button a {
+  /* アイコンとテキストの高さを揃える */
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  border-radius: 48px;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  padding: 12px 24px;
+}
+
+#header .button a p {
+  color: #111;
+  font-size: 14px;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  margin: 0px 0px 0px 6px;
+  text-align: center;
+  width: auto;
+  justify-content: center;
+}
+
+#header .button a:hover {
+  background-color: #111;
+}
+
+#header .button a:hover p {
+  color: #fff;
+}
+
+.img-mailhover {
+  display: none;
+}
+
+#header .button a:hover .img-mailhover {
+  display: inline-block;
+}
+
+#header .button a:hover .img-mail {
+  display: none;
+}
+
+/*-------------------------------------------
+Works
+-------------------------------------------*/
+#works {
+  margin: 144px auto 0px auto;
+}
+
+/* h2のdivタグ */
+.works-title {
+  margin: 0px auto;
+  padding: 0 24px;
+  width: 1180px; 
+}
+
+/* h2タグ用 works */
+.sec-title-ver {
+  color: #111;
+  font-size: 1.125rem;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  writing-mode: vertical-rl;
+  align-items: flex-start;
+}
+
+#works ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 72px;
+  place-content: center;
+  /* max-width: 1024px; padding:0 64px付けたため幅追加*/
+  max-width: 1152px;
+  margin: -48px auto 0px auto;
+  padding: 0 64px;
+}
+
+
+/* 画像のリンクのスタイル */
+.image-link {
+  display: block; 
+  padding: 24px;
+  background: rgb(242, 242, 242);
+  border-radius: 4px;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.1);
+  height: 640px;
+  width: 100%;
+}
+
+/* 
+imgをdivタグで囲む-拡大
+画像を拡大して、枠内でズームさせるように設定する
+*/
+.img-frame {
+  height: 100%;
+  overflow: hidden; /* 画像と円が枠からはみ出ないようにする */
+  width: 100%;
+  position: relative;; /* 円（.img-frame::before）が枠からはみ出ないようにする */
+}
+
+/* 画像のスタイル 拡大用 */
+.img-frame img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; /* 画像の比率を保ちながら親要素内に収める */
+  object-position:  center top;
+  border-radius: 4px;
+  transition-duration: 800ms;
+}
+
+/* 
+画像を拡大して、枠内でズームする 拡大
+*/
+.image-link:hover img {
+  transform: scale(1.05, 1.05); 
+}
+
+/* 
+円の疑似要素を設定する
+ホバーしたときに、中心から波紋が広がっていくボタンを作る 
+*/
+.img-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  background: rgba(242, 242, 242, 0.3);
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.8s ease all;
+  z-index: 20;/* ホバーを外した時に、円が縮小する動きを表示する */
+}
+
+/* リンクのホバー時に、透過した円の拡大を表示する */
+.image-link:hover .img-frame::before {
+  transform: scale(15, 15);
+  opacity: 1;
+  z-index: 20;
+}
+
+/* 
+-------------------------------------------
+テキスト部分↓
+*/
+
+.text-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0px 0px 0px;
+  transition-duration: 600ms;
+}
+
+.text-link:hover {
+  transform: translate(12px, 0px);
+}
+
+/* .text-link内のdivタグ */
+.works-text {
+  margin: 0px 24px 0px 0px;
+}
+
+.work-name {
+  color: #111;
+  /* font-size: 2rem; */
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.br-sp {
+  display: none; 
+}
+
+.work-skill {
+  color: #888;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.text-link i {
+  color: #111111;
+  opacity: 0;
+  transition-duration: 600ms;
+}
+
+.text-link:hover i {
+  opacity: 1;
+}
+
+/*-------------------------------------------
+Profile
+-------------------------------------------*/
+#profile {
+  margin: 144px auto 72px auto;
+  padding: 0 48px;
+  max-width: 1280px;
+}
+
+.content-area {
+  align-items: flex-start;
+  margin: 96px 0px 0px 0px;
+  display: grid;
+  grid-template-columns:calc(24% - 12px) calc(76% - 12px);
+  gap: 24px;
+  max-width: 100%;
+}
+
+/* 自己紹介 */
+.about {
+  width: 100%;
+  display: grid;
+  gap: 36px;
+}
+
+.img-about {
+  height: 320px;
+  max-width: 60%;
+}
+
+.img-about img {
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(0.6);
+}
+
+.profile-name-p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.profile-text {
+  margin: 36px 0px 0px 0px;
+  /* height: auto; */
+}
+
+.profile-text p {
+  margin: 12px 0px 0px 0px;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* 自己紹介 TOOLSとSKILLS */
+.about-skill,
+.media {
+  margin: 96px 0px 0px 0px;
+}
+
+.about-skill ul {
+  margin: 48px 0px 0px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* 水平・垂直の間隔を24pxに設定 */
+}
+
+/* 残りスペースを埋める（ulタグ内） */
+.spacer {
+  width: 100%;
+}
+.about-skill ul li {
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 12px 24px;
+}
+
+.about-skill ul li p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* 自己紹介 MEDIA */
+.media {
+  width: 100%;
+}
+
+.media ul {
+  margin: 48px 0px 0px 0px;
+  border-bottom: 1px dashed #888888;
+  width: 100%;
+}
+
+.media ul li {
+  border-top: 1px dashed #888888;
+}
+
+.media ul li a {
+  display: flex;
+  padding: 36px 0px;
+}
+
+.media-date {
+  color: #888888;
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  margin: 0px 24px 0px 0px;
+  width: 100px;  
+}
+
+.media-text {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.media-text p {
+  color: #111111;
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  margin: 0px 24px 0px 0px;
+  transition: all 0.5s 0s ease;
+}
+
+.media ul li a:hover  .media-text p {
+  transform: translate(12px, 0px);
+}
+
+.media-text i {
+  color: #888888;
+  font-size: 20px;
+}
+
+/*-------------------------------------------
+Contact
+-------------------------------------------*/
+#contact {
+  max-width: 1280px;
+  padding: 72px 48px 0 48px;
+  margin: 0 auto;  
+}
+
+.contact-info {
+  width: 100%;
+  color: #111;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-info p {
+  margin: 12px 0 0 0;
+}
+
+/* フォームの作成 */
+.contact-from {
+  margin: 48px 0 0 0;
+}
+
+label {
+  display: block;
+  margin: 0 0 20px 0;
+}
+
+label:last-of-type {
+  margin: 0 0 40px 0;
+}
+
+.form-title {
+  display: flex;
+  margin: 0 0 10px 0;
+}
+
+.form-title p {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.form-title p:nth-of-type(2) {
+  font-size: 0.938rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #f23a3c;
+  margin: 0 0 0 5px;
+}
+
+.form-title~input {
+  background: #FFFFFF;
+  border-bottom: 1px solid #888888;
+  border-left: 1px solid #888888;
+  border-radius: 4px;
+  border-right: 1px solid #888888;
+  border-top: 1px solid #888888;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  padding: 24px;
+  height: 48px;
+  width: 100%;
+}
+
+textarea {
+  background: #FFFFFF;
+  border-bottom: 1px solid #888888;
+  border-left: 1px solid #888888;
+  border-radius: 4px;
+  border-right: 1px solid #888888;
+  border-top: 1px solid #888888;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  padding: 24px;
+  height: 160px;
+  width: 100%;
+}
+
+.checkbox {
+  text-align: center;
+}
+
+.checkbox input {
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.checkbox span {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* ボタンを中央寄せ */
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+/* ボタン作成 */
+button {
+  background: #111111;
+  border-radius: 64px;
+  padding: 24px 48px;
+  transition-duration: 600ms;
+  position: relative;
+  overflow: hidden; /* 円がはみ出さないようにする */
+}
+
+button P {
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 0px 0px 2px 0px;
+}
+
+/* ボタンの拡大 */
+button:hover {
+  transform: scale(1.05);
+}
+
+/* 円の疑似要素を設定する */
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  background: rgba(242, 242, 242, 0.3);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+/* 円の拡大 */
+button:hover::before {
+  transform: scale(8, 8);
+  opacity: 1;
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 154px;
+  padding: 48px 24px;
+  width: 100%;
+}
+
+#footer p {
+  color: #111;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  width: auto;
+}
+
+.dot {
+  background: #111;
+  border-radius: 50%;
+  height: 4px;
+  width: 4px;
+  margin: 0 6px;
+  max-width: calc(100% - 12px);
+}
+
+#footer a {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-decoration: underline;
+}
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+@media screen and (max-width: 840px) {
+  /* h2タグ用 */
+  .sec-title {
+  font-size: 3rem;
+  }
+
+  /* h3タグ用　区分け */
+  .sort-title {
+  font-size: 1.25rem;
+  }
+
+  /* h3タグ用　name */
+  .profile-name-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  height: auto;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  }
+
+  /* h3タグ用　about */
+  .about-title {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  }
+
+  /* 
+  HeaderとMainとFooter全体を囲むdivクラス
+  */
+  .container {
+  width: 100%;
+  margin: 0px auto;
+  }
+
+  /*-------------------------------------------
+  ヘッダー
+  -------------------------------------------*/
+  #header {
+    padding: 24px 12px;
+  }
+  
+  #header .button a { 
+    padding: 8px 8px;
+    height: 48px;
+    width: 48px;
+    position: relative;
+  }
+  
+  #header .button a p {
+    display: none;
+  }
+
+  #header .button a img {
+    transform: translate(-50%, -50%); /* 要素の中心を基準にする */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  /*-------------------------------------------
+  Works
+  -------------------------------------------*/
+  #works {
+    margin: 120px auto 0px auto; 
+  }
+  
+  /* h2のdivタグ */
+  .works-title {
+    width: 100%;
+  }
+  
+  /* h2タグ works */
+  .sec-title-ver {
+    font-size: 0.875rem;
+    writing-mode: horizontal-tb;
+  }
+  
+  #works ul {
+    grid-template-columns: 1fr;
+    margin: 24px auto 0px auto;
+    padding: 0 24px;
+    /* 幅480px + padding paddingの幅の分小さくなるのを調整。 */
+    max-width: 528px;
+  }
+    
+  /* 画像のリンクのスタイル */
+  .image-link {
+    height: 420px;
+  }
+    
+  /* .text-link内 */ 
+  .work-name {
+    font-size: 1.75rem;
+  }
+
+  .br-sp {
+    display: block; 
+  }
+  
+  .text-link i {
+    opacity: 1;
+  }
+
+  /*-------------------------------------------
+  Profile
+  -------------------------------------------*/
+  #profile {
+    margin: 96px auto 0px auto;
+    padding: 0 24px;
+  }
+  
+  .content-area {
+    margin: 48px 0px 0px 0px;
+    display: block;
+  }
+
+  .profile-item {
+    margin: 24px 0 0 0;
+  }
+  
+  /* 自己紹介 */
+  .about {
+    gap: 24px;
+  }
+  
+  .img-about {
+    height: 240px;
+    width: 100%;
+    max-width: 475px;
+  }
+
+  .profile-text {
+    margin: 24px 0px 0px 0px;
+  }
+  
+  /* 自己紹介 TOOLSとSKILLS */
+  .about-skill,
+  .media {
+    margin: 96px 0px 0px 0px;
+  }
+  
+  .about-skill ul {
+    gap: 12px; /* 水平・垂直の間隔 */
+  }
+  
+  .about-skill ul li {
+    padding: 12px 20px;
+  }
+  
+  /* 自己紹介 MEDIA */
+  .media ul li a {
+    display: block;
+  }
+  
+  .media-date {
+    font-size: 1rem;
+  }
+    
+  .media-text p {
+    font-size: 1rem;
+  }
+
+  /*-------------------------------------------
+  Contact
+  -------------------------------------------*/
+  #contact {
+    padding: 72px 24px 0 24px;
+    margin: 0 auto;  
+  }
+
+  .contact-info p:first-of-type {
+    margin: 36px 0 0 0;
+  }
+}
